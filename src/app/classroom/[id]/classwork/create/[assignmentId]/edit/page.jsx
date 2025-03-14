@@ -1,20 +1,20 @@
 "use client";
 import AssignmentForm from '@/app/ui/components/AssignmentForm/AssignmentForm';
 import { classrooms } from '@/data/data';
-import { setLoading } from '@/redux/slices/loadingSlice';
+// import { setLoading } from '@/redux/slices/loadingSlice';
 import { Box, Typography } from '@mui/material';
 import { useParams } from 'next/navigation';
 import React, { useEffect } from 'react';
 
-import { useDispatch, useSelector } from 'react-redux';
+// import { useDispatch, useSelector } from 'react-redux';
 
 export default function EditAssignmentPage() {
   const params = useParams();
   const assignmentId = params.assignmentId;
-  const assignments = useSelector((state) => state.assignments.assignments);
-  const assignment = assignments.find(
-    (assignment) => assignment.id === assignmentId
-  );
+  // const assignments = useSelector((state) => state.assignments.assignments);
+  // const assignment = assignments.find(
+  //   (assignment) => assignment.id === assignmentId
+  // );
   
    const classroom = classrooms.find(
     (classroom) => classroom.id === Number(useParams().id)
@@ -22,10 +22,10 @@ export default function EditAssignmentPage() {
   if (!classroom) {
     return <div>Classroom not found</div>;
   }
-  const dispatch = useDispatch();
-  useEffect(()=>{
-  dispatch(setLoading(false))
-},[])
+//   const dispatch = useDispatch();
+//   useEffect(()=>{
+//   dispatch(setLoading(false))
+// },[])
 
   return(
     <Box>
@@ -43,7 +43,7 @@ export default function EditAssignmentPage() {
 </Typography>
 
     <Box>
-      <AssignmentForm classroomId={classroom.id} assignment={assignment} />
+      <AssignmentForm classroomId={classroom.id} />
     </Box>
     </Box>
   )
