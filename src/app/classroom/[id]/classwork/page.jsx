@@ -10,8 +10,8 @@ import Fade from '@mui/material/Fade';
 import MenuItem from "@mui/material/MenuItem";
 import Link from "next/link";
 import { Box } from "@mui/material";
-// import { useDispatch } from "react-redux";
-// import { setLoading } from "@/redux/slices/loadingSlice";
+import { useDispatch } from "react-redux";
+import { setLoading } from "@/redux/slices/loadingSlice";
 
 export default function ClassworkContent() {
   const classroom = classrooms.find(
@@ -20,10 +20,10 @@ export default function ClassworkContent() {
   if (!classroom) {
     return <div>Classroom not found</div>;
   }
-//   const dispatch = useDispatch();
-//   useEffect(()=>{
-//   dispatch(setLoading(false))
-// },[])
+  const dispatch = useDispatch();
+  useEffect(()=>{
+  dispatch(setLoading(false))
+},[])
 
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -65,7 +65,7 @@ export default function ClassworkContent() {
         onClose={handleClose}
         TransitionComponent={Fade}
       >
-        <MenuItem ><Link href={`/classroom/${classroom.id}/classwork/create`}>Assignment</Link></MenuItem>
+        <MenuItem onClick={()=>dispatch(setLoading(true))}><Link href={`/classroom/${classroom.id}/classwork/create`}>Assignment</Link></MenuItem>
         <MenuItem onClick={handleClose}>Question</MenuItem>
         <MenuItem onClick={handleClose}>Matirail</MenuItem>
       </Menu>

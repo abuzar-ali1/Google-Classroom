@@ -6,7 +6,9 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import IconButton from "@mui/material/IconButton";
 import React, { useState } from 'react';
 import Fade from '@mui/material/Fade';
-
+import { useDispatch } from 'react-redux';
+import { deleteAssignment } from '@/redux/slices/assignmentSlice';
+import { setLoading } from '@/redux/slices/loadingSlice';
 
 const AssignmentCard = ({ classroom, assignment }) => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -18,7 +20,12 @@ const AssignmentCard = ({ classroom, assignment }) => {
     setAnchorEl(null);
   };
  
- 
+  const dispatch = useDispatch();
+
+  const handleDelete = () => {
+    dispatch(deleteAssignment(assignment.id));
+  };
+
   return (
    
      <>
@@ -37,11 +44,11 @@ const AssignmentCard = ({ classroom, assignment }) => {
         borderRadius: 2
       }}>
   <Box sx={{ display: 'flex', alignItems: 'center' }}>
-    <Box sx={{ p: 1, borderRadius: '50%', bgcolor: classroom.color }}>
+    <Box sx={{ display:"flex", justifyContent:"center" , alignItems:'center', p: 1, borderRadius: '50%', bgcolor: classroom.color }}>
       <AssignmentIcon sx={{color:"white"}} />
     </Box>
-    <Link key={classroom.id} onClick={()=>dispatch(setLoading(true))} href={`/classroom/${classroom.id}/classwork/create/${assignment.id}`}>
-      <Typography sx={{ ml: 2 }} variant='body1'>
+    <Link key={classroom.id} style={{textDecoration: "none",color:'black'}} onClick={()=>dispatch(setLoading(true))} href={`/classroom/${classroom.id}/classwork/create/${assignment.id}`}>
+      <Typography  variant='body2' sx={{ ml: 2, fontWeight: 500, fontFamily: "'Google Sans', sans-serif" }}>
         Abuzar Ali posted a new Assignment: {assignment.title}
       </Typography>
     </Link>
@@ -66,9 +73,9 @@ const AssignmentCard = ({ classroom, assignment }) => {
     TransitionComponent={Fade}
   >
     <MenuItem onClick={()=>dispatch(setLoading(true))}>
-      <Link href={`/classroom/${classroom.id}/classwork/create/${assignment.id}/edit`}>Edit</Link>
+      <Link style={{textDecoration: "none",color:'black'}} href={`/classroom/${classroom.id}/classwork/create/${assignment.id}/edit`}>Edit</Link>
     </MenuItem>
-    <MenuItem onClick={handleClose}>Delete</MenuItem>
+    <MenuItem onClick={handleDelete}>Delete</MenuItem>
     <MenuItem onClick={handleClose}>Move</MenuItem>
   </Menu>
 </Box>

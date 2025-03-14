@@ -10,7 +10,7 @@ import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import TopicIcon from '@mui/icons-material/Topic';
 import { AppProvider } from '@toolpad/core/AppProvider';
 import { DashboardLayout } from '@toolpad/core/DashboardLayout';
-
+import { classrooms } from '@/data/data';
 
   
 const AppLayout = ({children}) => {
@@ -36,28 +36,49 @@ const AppLayout = ({children}) => {
       segment: 'teaching',
       title: 'Teaching',
       icon: <GroupIcon />,
-    
+      open: true,
       children: [
         {
           segment: 'review',
           title: 'Review',
           icon: <TopicIcon />,
           href: '/teaching/review'
-         
         },
       ],
     },
+    ...classrooms.map((cls) => ({
+      segment: `classroom/${cls.id}`,
+      title: cls.class,
+      icon: (
+        <div
+          style={{
+            width: 30,
+            height: 30,
+            borderRadius: "50%",
+            backgroundColor: cls.color,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            color: "white",
+            fontWeight: "bold",
+          }}
+        >
+          {cls.class.charAt(0)}
+        </div>
+      ),
+      href: `/classroom/${cls.id}`,
+    })),
     {
       segment: "archivedclasses",
       title: "Archived Classes",
       icon: <DriveFolderUploadIcon />,
-     href: '/archivedclasses'
+      href: '/archivedclasses'
     },
     {
       segment: "settings",
       title: "Settings",
       icon: <SettingsIcon />,
-     href: '/settings'
+      href: '/settings'
     },
   ];
 
@@ -80,7 +101,7 @@ const AppLayout = ({children}) => {
             email: 'abuzarali.edu@gmail.com',
             image: 'https://avatars.githubusercontent.com/u/168404860?v=4',
 
-           
+          
           },
         });
       },
@@ -130,4 +151,4 @@ const AppLayout = ({children}) => {
   );
 };
 
-export default AppLayout;
+export default AppLayout;   

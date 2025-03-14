@@ -12,7 +12,7 @@ export default function AssignmentDetails({ assignment,classroom }) {
         <CardContent>
           <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
             <Box sx={{ display: "flex", alignItems: "center" }}>
-              <Box sx={{ p: 1, borderRadius: '50%', bgcolor: classroom.color }}>
+              <Box sx={{ display:"flex", justifyContent:"center" , alignItems:'center', p: 1, p: 1, borderRadius: '50%', bgcolor: classroom.color }}>
                 <AssignmentIcon sx={{color:"white"}} />
               </Box>
               <Typography sx={{mx:1,fontFamily: "'Google Sans', sans-serif"}} variant="h5" gutterBottom color="black">

@@ -1,9 +1,9 @@
 "use client";
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-// import { useDispatch } from 'react-redux';
-// import { addAssignment, updateAssignment } from '@/redux/slices/assignmentSlice';
-// import { setLoading } from '@/redux/slices/loadingSlice';
+import { useDispatch } from 'react-redux';
+import { addAssignment, updateAssignment } from '@/redux/slices/assignmentSlice';
+import { setLoading } from '@/redux/slices/loadingSlice';
 import {
   TextField,
   Button,
@@ -31,7 +31,7 @@ import {
 
 const AssignmentForm = ({ assignment, classroomId }) => {
   const router = useRouter();
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const [title, setTitle] = useState(assignment?.title || '');
   const [description, setDescription] = useState(assignment?.description || '');
@@ -59,13 +59,13 @@ const AssignmentForm = ({ assignment, classroomId }) => {
       attachments
     };
 
-    // if (assignment) {
-    //   dispatch(updateAssignment(newAssignment));
-    // } else {
-    //   dispatch(addAssignment(newAssignment));
-    // }
+    if (assignment) {
+      dispatch(updateAssignment(newAssignment));
+    } else {
+      dispatch(addAssignment(newAssignment));
+    }
 
-    // dispatch(setLoading(true));
+    dispatch(setLoading(true));
     router.push(`/classroom/${classroomId}/stream`);
   };
 

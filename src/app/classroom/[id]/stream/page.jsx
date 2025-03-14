@@ -6,13 +6,13 @@ import { Box, Typography} from "@mui/material";
 import { useParams } from "next/navigation";
 import React, { useEffect } from "react";
 import ClassCode from "@/app/ui/components/ClassCode/ClassCode";
-// import { setLoading } from "@/redux/slices/loadingSlice";
-// import { useDispatch } from "react-redux";
+import { setLoading } from "@/redux/slices/loadingSlice";
+import { useDispatch } from "react-redux";
 import GoogleMeetCard from "@/app/ui/components/MeetCard/MeetCard";
 import AnnouncementCard from "@/app/ui/components/AnnouncementCard/AnnouncementCard";
 
 export default function StreamContent({ params }) {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const classroom = classrooms.find(
     (classroom) => classroom.id === Number(useParams().id)
   );
@@ -20,9 +20,9 @@ export default function StreamContent({ params }) {
     return <div>Classroom not found</div>;
   }
   
-  // useEffect(()=>{
-  //   dispatch(setLoading(false))
-  // },[])
+  useEffect(()=>{
+    dispatch(setLoading(false))
+  },[])
   return (
     <Box>
     <ClassroomHeader classroom={classroom} classroomId={classroom.id} />

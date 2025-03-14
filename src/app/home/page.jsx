@@ -9,24 +9,25 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import Link from "next/link";
 import { classrooms } from "@/data/data";
 import Grid from '@mui/material/Grid';
-// import { useDispatch } from "react-redux";
-// import { setLoading } from "@/redux/slices/loadingSlice";
+import { setLoading } from "@/redux/slices/loadingSlice";
+import { useDispatch } from "react-redux";
+
 
 
 const HomeComponent = () => {
-  // const dispatch = useDispatch()
+  const dispatch = useDispatch()
 
-  // useEffect(() => {
-  //   dispatch(setLoading(false));
+  useEffect(() => {
+    dispatch(setLoading(false));
 
-  // },[])
+  },[])
 
   return (
   <Box sx={{padding:"15px" }}>
     <Grid container spacing={4}>
       {classrooms.map((item) => (
         <Grid item key={item?.id} xs={12} sm={12} md={6} lg={4} xl={4}>
-          <Link  href={`/classroom/${item?.id}`} sx={{ textDecoration: "none" }}>
+          <Link onClick={()=>dispatch(setLoading(true))} href={`/classroom/${item?.id}`} style={{ textDecoration: "none" }}>
             <Card
               sx={{
                 borderRadius: "8px",
@@ -94,7 +95,7 @@ const HomeComponent = () => {
       ))}
       </Grid>
       </Box>
- 
+
       
   
   );

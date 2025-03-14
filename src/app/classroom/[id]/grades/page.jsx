@@ -1,10 +1,10 @@
 "use client"
 import ClassroomHeader from "@/app/ui/components/ClassroomHeader/ClassroomHeader";
 import { classrooms } from "@/data/data";
-// import { setLoading } from "@/redux/slices/loadingSlice";
+import { setLoading } from "@/redux/slices/loadingSlice";
 import { useParams } from "next/navigation";
 import React, { useEffect } from "react";
-// import { useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
 
 export default function GradesContent() {
@@ -14,10 +14,10 @@ export default function GradesContent() {
   if (!classroom) {
     return <div>Classroom not found</div>;
   }
-  // const dispatch = useDispatch();
-  // useEffect(()=>{
-  // dispatch(setLoading(false))
-// },[])
+  const dispatch = useDispatch();
+  useEffect(()=>{
+  dispatch(setLoading(false))
+},[])
 
 
     return (

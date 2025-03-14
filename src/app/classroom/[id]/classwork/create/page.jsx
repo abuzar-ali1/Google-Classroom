@@ -2,12 +2,12 @@
 
 import AssignmentForm from "@/app/ui/components/AssignmentForm/AssignmentForm";
 import { classrooms } from "@/data/data";
-// import { setLoading } from "@/redux/slices/loadingSlice";
+import { setLoading } from "@/redux/slices/loadingSlice";
 
 import { Box, Typography } from "@mui/material";
 import { useParams } from "next/navigation";
 import React, { useEffect } from "react";
-// import { useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
 export default function CreateAssignmentPage() {
    const classroom = classrooms.find(
@@ -17,10 +17,10 @@ export default function CreateAssignmentPage() {
     return <div>Classroom not found</div>;
   }
 
-//   const dispatch = useDispatch();
-//   useEffect(()=>{
-//   dispatch(setLoading(false))
-// },[])
+  const dispatch = useDispatch();
+  useEffect(()=>{
+  dispatch(setLoading(false))
+},[])
 
   return (
     <Box>
