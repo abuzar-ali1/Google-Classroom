@@ -20,4 +20,11 @@ export const classrooms = [
       code: "d3k2j4",
       color:'#9334e6'
     },
+    {
+      id:4,
+      class:"Python Development",
+      img: "https://gstatic.com/classroom/themes/img_read.jpg",
+      code:"sdf324s",
+      color:'#5f6368',
+    }
   ];

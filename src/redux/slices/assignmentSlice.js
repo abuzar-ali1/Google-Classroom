@@ -1,8 +1,16 @@
 "use client";
 import { createSlice } from '@reduxjs/toolkit';
 
+const getInitialAssignments = () => {
+  if (typeof window !== 'undefined') {
+    const storedAssignments = localStorage.getItem('assignments');
+    return storedAssignments ? JSON.parse(storedAssignments) : [];
+  }
+  return [];
+};
+
 const initialState = {
-  assignments: JSON.parse(localStorage.getItem('assignments')) || [],
+  assignments: getInitialAssignments(),
 };
 
 const assignmentsSlice = createSlice({
@@ -11,7 +19,9 @@ const assignmentsSlice = createSlice({
   reducers: {
     addAssignment: (state, action) => {
       state.assignments.push(action.payload);
-      localStorage.setItem('assignments', JSON.stringify(state.assignments));
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('assignments', JSON.stringify(state.assignments));
+      }
     },
     updateAssignment: (state, action) => {
       const index = state.assignments.findIndex(
@@ -19,14 +29,18 @@ const assignmentsSlice = createSlice({
       );
       if (index !== -1) {
         state.assignments[index] = action.payload;
-        localStorage.setItem('assignments', JSON.stringify(state.assignments));
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('assignments', JSON.stringify(state.assignments));
+        }
       }
     },
     deleteAssignment: (state, action) => {
       state.assignments = state.assignments.filter(
         (a) => a.id !== action.payload
       );
-      localStorage.setItem('assignments', JSON.stringify(state.assignments));
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('assignments', JSON.stringify(state.assignments));
+      }
     },
   },
 });

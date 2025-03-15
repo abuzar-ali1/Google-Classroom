@@ -47,7 +47,7 @@ const AssignmentCard = ({ classroom, assignment }) => {
     <Box sx={{ display:"flex", justifyContent:"center" , alignItems:'center', p: 1, borderRadius: '50%', bgcolor: classroom.color }}>
       <AssignmentIcon sx={{color:"white"}} />
     </Box>
-    <Link key={classroom.id} style={{textDecoration: "none",color:'black'}} onClick={()=>dispatch(setLoading(true))} href={`/classroom/${classroom.id}/classwork/create/${assignment.id}`}>
+    <Link key={classroom.id} style={{textDecoration: "none",color:'#3c4043'}} onClick={()=>dispatch(setLoading(true))} href={`/classroom/${classroom.id}/classwork/create/${assignment.id}`}>
       <Typography  variant='body2' sx={{ ml: 2, fontWeight: 500, fontFamily: "'Google Sans', sans-serif" }}>
         Abuzar Ali posted a new Assignment: {assignment.title}
       </Typography>
