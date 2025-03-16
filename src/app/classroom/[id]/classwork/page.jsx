@@ -65,7 +65,7 @@ export default function ClassworkContent() {
         onClose={handleClose}
         TransitionComponent={Fade}
       >
-        <MenuItem onClick={()=>dispatch(setLoading(true))}><Link href={`/classroom/${classroom.id}/classwork/create`}>Assignment</Link></MenuItem>
+        <MenuItem onClick={()=>dispatch(setLoading(true))}><Link style={{textDecoration: "none",color:"black"}} href={`/classroom/${classroom.id}/classwork/create`}>Assignment</Link></MenuItem>
         <MenuItem onClick={handleClose}>Question</MenuItem>
         <MenuItem onClick={handleClose}>Matirail</MenuItem>
       </Menu>
